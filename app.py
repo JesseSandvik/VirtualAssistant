@@ -1,6 +1,7 @@
 import pyttsx3
 import speech_recognition
 import webbrowser
+import wikipedia
 
 def take_command():
     recognizer = speech_recognition.Recognizer()
@@ -65,6 +66,14 @@ def take_query():
         
         elif 'tell me your name' in query:
             speak("I am Ghost, your personal assistant.")
+            continue
+
+        elif 'search wikipedia' in query:
+            speak("Searching Wikipedia...")
+            query = query.replace("wikipedia", "")
+            result = wikipedia.summary(query, sentences=2)
+            speak("According to Wikipedia")
+            speak(result)
             continue
 
         elif 'bye' in query:
