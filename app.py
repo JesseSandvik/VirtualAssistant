@@ -1,7 +1,12 @@
+import json
 import pyttsx3
 import speech_recognition
 import webbrowser
 import wikipedia
+
+from pathlib import Path
+
+from src.components.greeting.greeting import Greeting
 
 def take_command():
     recognizer = speech_recognition.Recognizer()
@@ -40,12 +45,9 @@ def speak(audio):
     engine.runAndWait()
 
 
-def hello():
-    speak("Hello, I am Ghost. How can I help you?")
-
-
 def take_query():
-    hello()
+    greeting = Greeting("Ghost")
+    speak(greeting.say_hello())
 
     while True:
         query = take_command().lower()
@@ -77,7 +79,7 @@ def take_query():
             continue
 
         elif 'bye' in query:
-            speak("Goodbye!")
+            speak(greeting.say_goodbye())
             exit()
 
         return query
