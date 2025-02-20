@@ -1,4 +1,5 @@
 import json
+import os
 import pyttsx3
 import speech_recognition
 import webbrowser
@@ -6,7 +7,7 @@ import wikipedia
 
 from pathlib import Path
 
-from src.components.greeting.greeting import Greeting
+from src.app.banter.banter import Banter
 
 def take_command():
     recognizer = speech_recognition.Recognizer()
@@ -37,17 +38,30 @@ def test_voices():
         engine.runAndWait()
 
 
-def speak(audio):
+def speak(audio: str, voice: str, speech_rate: int):
     engine = pyttsx3.init()
-    voices = engine.getProperty('voices')
-    engine.setProperty('voice', 'com.apple.speech.synthesis.voice.Zarvox')
+    engine.setProperty('rate', speech_rate)
+    engine.setProperty('voice', voice)
     engine.say(audio)
     engine.runAndWait()
 
 
 def take_query():
-    greeting = Greeting("Ghost")
-    speak(greeting.say_hello())
+    assistant_config_file_path = os.path.join(
+        os.path.dirname(__file__),
+        'src',
+        'config',
+        'assistant.json'
+    )
+    assistant_config_file_content = Path(assistant_config_file_path).read_text()
+    assistant_config = json.loads(assistant_config_file_content)
+
+    banter = Banter(
+         name=assistant_config.get('name'),
+         greetings=assistant_config.get('greetings'),
+         sign_offs=assistant_config.get('sign_offs')
+    )
+    speak(audio=banter.say_hello(), voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
 
     while True:
         query = take_command().lower()
@@ -57,29 +71,29 @@ def take_query():
             continue
 
         if 'open google' in query:
-            speak("Opening Google...")
+            speak(audio="Opening Google...", voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
             webbrowser.open_new("https://www.google.com")
             continue
 
         elif 'open youtube' in query:
-            speak("Opening YouTube...")
+            speak(audio="Opening YouTube...", voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
             webbrowser.open_new("https://www.youtube.com")
             continue
         
         elif 'tell me your name' in query:
-            speak("I am Ghost, your personal assistant.")
+            speak(audio=banter.say_name(), voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
             continue
 
         elif 'search wikipedia' in query:
-            speak("Searching Wikipedia...")
+            speak(audio="Searching Wikipedia...", voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
             query = query.replace("wikipedia", "")
             result = wikipedia.summary(query, sentences=2)
-            speak("According to Wikipedia")
-            speak(result)
+            speak(audio="According to Wikipedia...", voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
+            speak(audio=result, voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
             continue
 
         elif 'bye' in query:
-            speak(greeting.say_goodbye())
+            speak(audio=banter.say_goodbye(), voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
             exit()
 
         return query
