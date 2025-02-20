@@ -22,7 +22,7 @@ class TestBanter(unittest.TestCase):
 
     def test_should_say_name(self):
         actual = self.banter.say_name()
-        self.assertEqual('My name is Atom', actual)
+        self.assertEqual('My name is Atom.', actual)
 
     def test_should_say_goodbye(self):
         actual = self.banter.say_goodbye()

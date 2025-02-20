@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 import pyttsx3
 import speech_recognition
@@ -9,21 +10,23 @@ from pathlib import Path
 
 from src.app.banter.banter import Banter
 
-def take_command():
+FORMAT = '%(asctime)s %(message)s'
+logging.basicConfig(format=FORMAT, level=logging.DEBUG)
+
+LOGGER = logging.getLogger(__name__)
+
+def take_command(name: str):
     recognizer = speech_recognition.Recognizer()
 
     with speech_recognition.Microphone() as source:
-        print('Listening...')
+        LOGGER.info(f"[{name}] is listening...")
         recognizer.pause_threshold = 1
         audio = recognizer.listen(source)
-
         try:
-            print('Recognizing...')
             query = recognizer.recognize_google(audio, language='en-in')
-            print('the command is printed=', query)
         except Exception as e:
             print(e)
-            print('Something went wrong. Please say that again.')
+            print('Something went wrong.')
             return "None"
         
     return query
@@ -38,10 +41,11 @@ def test_voices():
         engine.runAndWait()
 
 
-def speak(audio: str, voice: str, speech_rate: int):
+def speak(name: str, audio: str, voice: str, speech_rate: int):
     engine = pyttsx3.init()
     engine.setProperty('rate', speech_rate)
     engine.setProperty('voice', voice)
+    LOGGER.info(f"[{name}]: {audio}")
     engine.say(audio)
     engine.runAndWait()
 
@@ -61,39 +65,39 @@ def take_query():
          greetings=assistant_config.get('greetings'),
          sign_offs=assistant_config.get('sign_offs')
     )
-    speak(audio=banter.say_hello(), voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
+    speak(name=assistant_config.get('name'), audio=banter.say_hello(), voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
 
     while True:
-        query = take_command().lower()
+        query = take_command(name=assistant_config.get('name')).lower()
 
         if 'test voices' in query:
             test_voices()
             continue
 
         if 'open google' in query:
-            speak(audio="Opening Google...", voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
+            speak(name=assistant_config.get('name'), audio="Opening Google...", voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
             webbrowser.open_new("https://www.google.com")
             continue
 
         elif 'open youtube' in query:
-            speak(audio="Opening YouTube...", voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
+            speak(name=assistant_config.get('name'), audio="Opening YouTube...", voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
             webbrowser.open_new("https://www.youtube.com")
             continue
         
-        elif 'tell me your name' in query:
-            speak(audio=banter.say_name(), voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
+        elif 'what is your name' in query:
+            speak(name=assistant_config.get('name'), audio=banter.say_name(), voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
             continue
 
         elif 'search wikipedia' in query:
-            speak(audio="Searching Wikipedia...", voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
+            speak(name=assistant_config.get('name'), audio="Searching Wikipedia...", voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
             query = query.replace("wikipedia", "")
             result = wikipedia.summary(query, sentences=2)
-            speak(audio="According to Wikipedia...", voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
-            speak(audio=result, voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
+            speak(name=assistant_config.get('name'), audio="According to Wikipedia...", voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
+            speak(name=assistant_config.get('name'), audio=result, voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
             continue
 
         elif 'bye' in query:
-            speak(audio=banter.say_goodbye(), voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
+            speak(name=assistant_config.get('name'), audio=banter.say_goodbye(), voice=assistant_config.get('maleVoice'), speech_rate=assistant_config.get('speechRate'))
             exit()
 
         return query

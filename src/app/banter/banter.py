@@ -13,7 +13,7 @@ class Banter:
         return random.choice(self.sign_offs)
     
     def say_name(self) -> str:
-        return f"My name is {self.name}"
+        return f"My name is {self.name}."
 
     def say_hello(self) -> str:
         return self.__get_random_greeting().replace('[NAME]', self.name)
