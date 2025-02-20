@@ -10,7 +10,7 @@ from pathlib import Path
 
 from src.app.banter.banter import Banter
 
-FORMAT = '%(asctime)s %(message)s'
+FORMAT = '%(asctime)s - %(levelname)s | %(message)s'
 logging.basicConfig(format=FORMAT, level=logging.DEBUG)
 
 LOGGER = logging.getLogger(__name__)
@@ -45,7 +45,7 @@ def speak(name: str, audio: str, voice: str, speech_rate: int):
     engine = pyttsx3.init()
     engine.setProperty('rate', speech_rate)
     engine.setProperty('voice', voice)
-    LOGGER.info(f"[{name}]: {audio}")
+    LOGGER.info(f"[{name}] says: {audio}")
     engine.say(audio)
     engine.runAndWait()
 
