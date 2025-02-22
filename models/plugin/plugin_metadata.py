@@ -1,13 +1,17 @@
 from dataclasses import dataclass
-from typing import Optional
+from typing import List, Optional
+
+from models.plugin.plugin_dependency import PluginDependency
+from models.plugin.plugin_runtime import PluginRuntime
 
 
 @dataclass
 class PluginMetadata:
     name: str
+    alias: str
+    creator: str
+    runtime: PluginRuntime
+    repository: str
+    description: str
     version: str
-    description: Optional[str]
-    author: str
-    license: Optional[str]
-    url: Optional[str]
-    tags: Optional[list[str]]
+    requirements: Optional[List[PluginDependency]]

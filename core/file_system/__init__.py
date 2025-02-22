@@ -1,2 +1,1 @@
-from .command_line import CommandLineParser
 from .file_system import FileSystemConfiguration, FileSystem
