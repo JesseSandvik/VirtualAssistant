@@ -32,3 +32,7 @@ class TestCommandLineParser(unittest.TestCase):
     def test_should_set_log_level_to_DEBUG_when_specified(self):
         __cli_arguments = self.parser.parse(['--log-level=DEBUG'])
         self.assertEqual(__cli_arguments.log_level, 'DEBUG')
+
+    def test_should_set_log_level_to_NOTSET_when_specified(self):
+        __cli_arguments = self.parser.parse(['--log-level=NOTSET'])
+        self.assertEqual(__cli_arguments.log_level, 'NOTSET')
