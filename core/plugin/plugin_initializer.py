@@ -34,7 +34,7 @@ class PluginInitializer:
             print(f"Error loading plugin module configuration: {e}")
         return None
 
-    def get_initialized_runtime(self, module_name: str, plugin_directory: str = FileSystem.get_plugins_directory()) -> Optional[str]:
+    def initialize(self, module_name: str, plugin_directory: str = FileSystem.get_plugins_directory()) -> Optional[str]:
         plugin_module_path = os.path.join(plugin_directory, module_name)
 
         if os.path.isdir(plugin_module_path):
