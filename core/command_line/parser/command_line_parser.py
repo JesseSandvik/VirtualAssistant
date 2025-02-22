@@ -2,6 +2,7 @@ import logging
 
 from argparse import ArgumentParser
 
+from models.command_line import CommandLineParameters
 
 class CommandLineParser:
 
@@ -14,8 +15,9 @@ class CommandLineParser:
             "--log-level",
             default="INFO",
             choices=list(logging.getLevelNamesMapping()),
-            help="set the log level for application",
+            help="set the log level for the application",
         )
 
-    def parse(self, args):
-        return self.parser.parse_args(args)
+    def parse(self, args) -> CommandLineParameters:
+        known_args = self.parser.parse_args(args)
+        return CommandLineParameters(log_level=known_args.log_level)
