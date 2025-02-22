@@ -2,6 +2,7 @@ import os
 import yaml
 
 from enum import Enum
+from typing import Optional
 
 
 class FileSystemConfiguration(Enum):
@@ -30,8 +31,9 @@ class FileSystem:
         return os.path.join(project_root_directory, FileSystemConfiguration.PLUGINS_DIRECTORY.value)
 
     @staticmethod
-    def load_configuration(file_name: str = FileSystemConfiguration.CONFIGURATION_FILE_NAME.value):
-        configuration_directory = FileSystem.get_configuration_directory()
+    def load_configuration(file_name: str = FileSystemConfiguration.CONFIGURATION_FILE_NAME.value, configuration_directory: Optional[str] = None):
+        if configuration_directory is None:
+            configuration_directory = FileSystem.__get_config_directory()
         with open(os.path.join(configuration_directory, file_name)) as configuration_file:
             input_data = yaml.safe_load(configuration_file)
         return input_data

@@ -1,10 +1,11 @@
 import sys
 
-from core import CommandLineParser
+from core import CommandLineParser, PluginInitializer
 
 
 def __initialize_application():
-    pass
+    configured_plugin_runtime = PluginInitializer().get_initialized_runtime(module_name='speech-interface-plugin')
+    print(configured_plugin_runtime)
 
 
 if __name__ == "__main__":

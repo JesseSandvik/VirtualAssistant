@@ -1,0 +1,13 @@
+name: 'Virtual Assistant Text Interface'
+alias: 'text-interface-plugin'
+creator: 'Jesse Sandvik'
+runtime:
+  main: 'main.py'
+  tests:
+    - 'tests/core.py'
+repository: 'https://github.com'
+description: 'Allows users to interface with Virtual Assistant through text.'
+version: '0.0.1'
+requirements:
+  - name: ''
+    version: ''

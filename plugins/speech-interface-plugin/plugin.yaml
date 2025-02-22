@@ -1,0 +1,13 @@
+name: 'Virtual Assistant Speech Interface'
+alias: 'speech-interface-plugin'
+creator: 'Jesse Sandvik'
+runtime:
+  main: 'main.py'
+  tests:
+    - 'tests/core.py'
+repository: 'https://github.com'
+description: 'Allows users to interface with Virtual Assistant through speech.'
+version: '0.0.1'
+requirements:
+  - name: ''
+    version: ''

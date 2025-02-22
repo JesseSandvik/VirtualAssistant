@@ -6,5 +6,5 @@ registry:
 logging:
   level: 'DEBUG'
 plugins:
-  - text-interface-plugin
   - speech-interface-plugin
+  - text-interface-plugin
