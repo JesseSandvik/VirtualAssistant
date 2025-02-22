@@ -1,0 +1,10 @@
+registry:
+  url: 'https://github.com/{name}/{repository}/releases/download/{version}'
+  name: ''
+  repository: ''
+  version: 'latest'
+logging:
+  level: 'DEBUG'
+plugins:
+  - text-interface-plugin
+  - speech-interface-plugin
