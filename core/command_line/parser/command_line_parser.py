@@ -6,8 +6,8 @@ from models.command_line import CommandLineParameters
 
 class CommandLineParser:
 
-    def __init__(self):
-        self.parser = ArgumentParser()
+    def __init__(self, description: str = None, usage: str = None):
+        self.parser = ArgumentParser(description=description, usage=usage)
         self.__add_log_level_argument()
 
     def __add_log_level_argument(self):
