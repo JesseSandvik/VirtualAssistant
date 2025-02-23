@@ -1,5 +1,5 @@
 from abc import ABC
 
 
-class PluginCoreInterface(ABC):
+class IPluginCore(ABC):
     pass

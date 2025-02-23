@@ -10,7 +10,6 @@ if __name__ == "__main__":
         loader=plugin_loader,
         registry=plugin_registry,
         validator=PluginValidator
-    ).load_plugins()
+    ).load_plugins().register_plugins()
 
-    print(plugin_loader.plugins)
-    print(plugin_registry.get_all_plugins())
+    print(plugin_registry.plugins)

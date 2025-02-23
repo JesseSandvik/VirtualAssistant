@@ -1,3 +1,3 @@
 from .plugin_instance_type_validator import PluginInstanceTypeValidator
 from .plugin_metadata_validator import PluginMetadataValidator
-from .plugin_validator_interface import PluginValidatorInterface
+from .plugin_validator_interface import IPluginValidator

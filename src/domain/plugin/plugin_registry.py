@@ -13,6 +13,3 @@ class PluginRegistry:
 
     def get_plugin(self, plugin_name: str) -> Plugin:
         return self.plugins.get(plugin_name)
-    
-    def get_all_plugins(self) -> Dict[str, Plugin]:
-        return self.plugins

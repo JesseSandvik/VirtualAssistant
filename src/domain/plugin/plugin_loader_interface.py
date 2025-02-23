@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class PluginLoader(ABC):
+class IPluginLoader(ABC):
 
     @abstractmethod
     def load_plugins(self):

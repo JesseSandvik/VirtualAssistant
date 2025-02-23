@@ -4,11 +4,11 @@ import os
 from importlib import import_module
 from typing import List
 
-from src.domain import PluginMetadata, Plugin, PluginLoader
+from src.domain import PluginMetadata, Plugin, IPluginLoader
 from src.infrastructure.file_system import FileSystem, FileSystemConfiguration
 
 
-class FileSystemPluginLoader(PluginLoader):
+class FileSystemPluginLoader(IPluginLoader):
     __IGNORE_DIRECTORIES = ['__pycache__']
     __IGNORE_FILES = ['__init__.py']
 

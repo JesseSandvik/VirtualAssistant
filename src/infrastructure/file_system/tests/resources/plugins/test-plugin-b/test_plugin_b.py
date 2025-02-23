@@ -1,7 +1,7 @@
-from src.domain import PluginCoreInterface
+from src.domain import IPluginCore
 
 
-class FakePluginB(PluginCoreInterface):
+class FakePluginB(IPluginCore):
 
     def do_something(self):
         pass
