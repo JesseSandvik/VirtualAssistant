@@ -1,4 +1,4 @@
-from src.domain import PluginRegistry, PluginValidator
+from src.domain import Plugin, PluginRegistry, PluginValidator
 
 
 class PluginManager:
@@ -6,7 +6,7 @@ class PluginManager:
     def __init__(self, registry: PluginRegistry):
         self.registry = registry
 
-    def register_plugin(self, plugin_name: str, plugin_instance: object):
-        PluginValidator.validate(plugin_instance)
-        self.registry.register_plugin(plugin_name, plugin_instance)
-        print(f"Plugin {plugin_name} registered successfully.")
+    def register_plugin(self, plugin: Plugin):
+        PluginValidator.validate(plugin)
+        self.registry.register_plugin(plugin)
+        print(f"Plugin {plugin.instance.__class__.__name__} registered successfully.")

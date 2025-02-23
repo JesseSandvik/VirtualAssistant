@@ -4,3 +4,15 @@ version: '1.0.0'
 author_name: 'Jesse Sandvik'
 author_email: 'sandvikjesse@gmail.com'
 enabled: true
+keywords:
+  - input
+  - output
+  - speech
+  - text-to-speech
+  - speech-to-text
+  - virtual-assistant
+  - assistant
+  - voice
+  - voice-assistant
+  - voice-activation
+  - voice-recognition

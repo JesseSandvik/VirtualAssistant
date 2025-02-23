@@ -27,7 +27,7 @@ class PluginLoader:
                     plugin_paths.append(os.path.join(root, file))
 
         return plugin_paths
-    
+
     @staticmethod
     def __get_plugin_configuration_from_plugin_file_path(plugin_file_path: str):
         plugin_candidate_entry_point = FileSystem.get_file_name_from_path(plugin_file_path)
@@ -40,6 +40,12 @@ class PluginLoader:
         plugin_module_path_without_file_extension = FileSystem.remove_file_extension(plugin_module_path)
         plugin_module_import_path = '.'.join(FileSystem.get_path_sections(plugin_module_path_without_file_extension))
         return import_module(plugin_module_import_path)
+    
+    def __load_plugin(self, plugin_module, plugin_configuration):
+        for plugin_class_name, plugin_class in inspect.getmembers(plugin_module, inspect.isclass):
+            if plugin_class.__module__ == plugin_module.__name__:
+                plugin_metadata = PluginMetadata(**plugin_configuration)
+                self.plugin_manager.register_plugin(Plugin(plugin_metadata, plugin_class()))
 
     def load_plugins(self) -> List[str]:
         plugin_candidate_file_paths = PluginLoader.__discover_plugin_paths()
@@ -50,11 +56,7 @@ class PluginLoader:
             if plugin_candidate_configuration.get('enabled', False):
                 try:
                     plugin_module = PluginLoader.__get_plugin_module_from_plugin_file_path(plugin_candidate_file_path)
-
-                    for name, obj in inspect.getmembers(plugin_module, inspect.isclass):
-                        if obj.__module__ == plugin_module.__name__:
-                            plugin_metadata = PluginMetadata(**plugin_candidate_configuration)
-                            self.plugin_manager.register_plugin(name, Plugin(plugin_metadata, obj()))
+                    self.__load_plugin(plugin_module, plugin_candidate_configuration)
 
                 except Exception as e:
                     print(f"Error loading plugin {plugin_candidate_file_path}: {e}")

@@ -4,3 +4,11 @@ version: '1.0.0'
 author_name: 'Jesse Sandvik'
 author_email: 'sandvikjesse@gmail.com'
 enabled: true
+keywords:
+  - input
+  - output
+  - text
+  - text-input
+  - text-output
+  - virtual-assistant
+  - assistant
