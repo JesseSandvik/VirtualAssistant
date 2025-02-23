@@ -17,9 +17,9 @@ class PluginLoader:
         self.plugin_manager = plugin_manager
 
     @staticmethod
-    def __discover_plugin_paths() -> List[str]:
+    def __discover_plugin_paths(plugins_directory: str) -> List[str]:
         plugin_paths = []
-        for root, dirs, files in os.walk(FileSystem.get_plugins_directory()):
+        for root, dirs, files in os.walk(plugins_directory):
             dirs[:] = [d for d in dirs if d not in PluginLoader.__IGNORE_DIRECTORIES]
 
             for file in files:
@@ -47,8 +47,8 @@ class PluginLoader:
                 plugin_metadata = PluginMetadata(**plugin_configuration)
                 self.plugin_manager.register_plugin(Plugin(plugin_metadata, plugin_class()))
 
-    def load_plugins(self) -> List[str]:
-        plugin_candidate_file_paths = PluginLoader.__discover_plugin_paths()
+    def load_plugins(self, plugins_directory: str = FileSystem.get_plugins_directory()) -> List[str]:
+        plugin_candidate_file_paths = PluginLoader.__discover_plugin_paths(plugins_directory)
 
         for plugin_candidate_file_path in plugin_candidate_file_paths:
             plugin_candidate_configuration = PluginLoader.__get_plugin_configuration_from_plugin_file_path(plugin_candidate_file_path)
