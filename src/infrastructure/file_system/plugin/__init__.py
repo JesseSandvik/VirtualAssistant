@@ -1,1 +1,3 @@
 from .file_system_plugin_loader import FileSystemPluginLoader
+from .file_system_plugin_registry import FileSystemPluginRegistry
+from .file_system_plugin_validator import FileSystemPluginValidator

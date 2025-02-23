@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class IPluginValidator(ABC):
+class IPluginValidatorHandler(ABC):
 
     def __init__(self, next_validator = None):
         self.next_validator = next_validator

@@ -1,9 +1,9 @@
-from src.domain import Plugin, IPluginLoader, PluginRegistry, PluginValidator
+from src.domain import IPluginLoader, IPluginRegistry, IPluginValidator
 
 
 class PluginManager:
 
-    def __init__(self, loader: IPluginLoader, registry: PluginRegistry, validator: PluginValidator):
+    def __init__(self, loader: IPluginLoader, registry: IPluginRegistry, validator: IPluginValidator):
         self.loader = loader
         self.validator = validator
         self.registry = registry

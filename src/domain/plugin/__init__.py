@@ -1,6 +1,11 @@
 from .models.plugin_metadata import PluginMetadata
 from .models.plugin import Plugin
+
 from .plugin_core_interface import IPluginCore
 from .plugin_loader_interface import IPluginLoader
-from .plugin_registry import PluginRegistry
-from .plugin_validator import PluginValidator
+from .plugin_registry_interface import IPluginRegistry
+from .plugin_validator_interface import IPluginValidator
+
+from .validators.plugin_instance_type_validator import PluginInstanceTypeValidator
+from .validators.plugin_metadata_validator import PluginMetadataValidator
+from .validators.plugin_validator_handler_interface import IPluginValidatorHandler

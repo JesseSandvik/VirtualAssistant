@@ -1,9 +1,9 @@
-from src.domain.plugin.validators.plugin_validator_interface import IPluginValidator
+from src.domain.plugin.validators.plugin_validator_handler_interface import IPluginValidatorHandler
 from src.domain.plugin.plugin_core_interface import IPluginCore
 from src.domain.plugin.models.plugin import Plugin
 
 
-class PluginInstanceTypeValidator(IPluginValidator):
+class PluginInstanceTypeValidator(IPluginValidatorHandler):
 
     def _check(self, plugin: Plugin):
         if not isinstance(plugin.instance, IPluginCore):
