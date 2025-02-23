@@ -4,6 +4,7 @@ import os
 from importlib import import_module
 from typing import List
 
+from src.domain import PluginMetadata, Plugin
 from src.infrastructure import FileSystem, FileSystemConfiguration
 from src.application import PluginManager
 
@@ -52,6 +53,12 @@ class PluginLoader:
 
                     for name, obj in inspect.getmembers(plugin_module, inspect.isclass):
                         if obj.__module__ == plugin_module.__name__:
-                            self.plugin_manager.register_plugin(name, obj)
+                            plugin_metadata = PluginMetadata(**plugin_candidate_configuration)
+                            self.plugin_manager.register_plugin(name, Plugin(plugin_metadata, obj()))
+
                 except Exception as e:
                     print(f"Error loading plugin {plugin_candidate_file_path}: {e}")
+                finally:
+                    print('='*100)
+                    print(self.plugin_manager.registry.plugins)
+                    print('='*100)

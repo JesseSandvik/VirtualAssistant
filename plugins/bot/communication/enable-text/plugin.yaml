@@ -1,4 +1,4 @@
-plugin_name: 'Virtual Assistant Text Interface Plugin'
+name: 'Virtual Assistant Text Interface Plugin'
 description: 'This plugin enables text communication with a virtual assistant.'
 version: '1.0.0'
 author_name: 'Jesse Sandvik'

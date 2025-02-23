@@ -1,12 +1,11 @@
 from abc import ABC, abstractmethod
 
 
-class ValidatorInterface(ABC):
+class PluginValidatorInterface(ABC):
 
     def __init__(self, next_validator = None):
         self.next_validator = next_validator
 
-    @abstractmethod
     def validate(self, plugin):
         self._check(plugin)
         if self.next_validator:
