@@ -1,2 +1,2 @@
 from .file_system.file_system import FileSystem, FileSystemConfiguration
-from .plugin.plugin_loader import PluginLoader
+from .file_system.plugin.file_system_plugin_loader import FileSystemPluginLoader

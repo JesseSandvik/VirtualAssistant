@@ -1,7 +1,16 @@
-from src.domain import PluginRegistry
+from src.domain import PluginRegistry, PluginValidator
 from src.application import PluginManager
-from src.infrastructure import PluginLoader
+from src.infrastructure import FileSystemPluginLoader
 
 
 if __name__ == "__main__":
-    PluginLoader(PluginManager(PluginRegistry())).load_plugins()
+    plugin_registry = PluginRegistry()
+    plugin_loader = FileSystemPluginLoader()
+    PluginManager(
+        loader=plugin_loader,
+        registry=plugin_registry,
+        validator=PluginValidator
+    ).load_plugins()
+
+    print(plugin_loader.plugins)
+    print(plugin_registry.get_all_plugins())

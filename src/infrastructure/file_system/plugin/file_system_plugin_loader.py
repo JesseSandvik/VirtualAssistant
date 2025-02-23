@@ -4,32 +4,30 @@ import os
 from importlib import import_module
 from typing import List
 
-from src.domain import PluginMetadata, Plugin
-from src.infrastructure import FileSystem, FileSystemConfiguration
-from src.application import PluginManager
+from src.domain import PluginMetadata, Plugin, PluginLoader
+from src.infrastructure.file_system import FileSystem, FileSystemConfiguration
 
 
-class PluginLoader:
+class FileSystemPluginLoader(PluginLoader):
     __IGNORE_DIRECTORIES = ['__pycache__']
     __IGNORE_FILES = ['__init__.py']
 
-    def __init__(self, plugin_manager: PluginManager):
-        self.plugin_manager = plugin_manager
+    def __init__(self, plugins_directory: str = FileSystem.get_plugins_directory()):
+        self.plugins: List[Plugin] = []
+        self.plugins_directory = plugins_directory
 
-    @staticmethod
-    def __discover_plugin_paths(plugins_directory: str) -> List[str]:
+    def __discover_plugin_paths(self) -> List[str]:
         plugin_paths = []
-        for root, dirs, files in os.walk(plugins_directory):
-            dirs[:] = [d for d in dirs if d not in PluginLoader.__IGNORE_DIRECTORIES]
+        for root, dirs, files in os.walk(self.plugins_directory):
+            dirs[:] = [d for d in dirs if d not in FileSystemPluginLoader.__IGNORE_DIRECTORIES]
 
             for file in files:
-                if file.endswith(".py") and file not in PluginLoader.__IGNORE_FILES:
+                if file.endswith(".py") and file not in FileSystemPluginLoader.__IGNORE_FILES:
                     plugin_paths.append(os.path.join(root, file))
 
         return plugin_paths
 
-    @staticmethod
-    def __get_plugin_configuration_from_plugin_file_path(plugin_file_path: str):
+    def __get_plugin_configuration_from_plugin_file_path(self, plugin_file_path: str):
         try:
             plugin_candidate_entry_point = FileSystem.get_file_name_from_path(plugin_file_path)
             plugin_candidate_configuration_file_path = plugin_file_path.replace(plugin_candidate_entry_point, FileSystemConfiguration.PLUGIN_CONFIGUATION_FILE_NAME.value)
@@ -38,8 +36,7 @@ class PluginLoader:
             print(f"Error loading plugin configuration for {plugin_file_path}: {e}")
             return {}
 
-    @staticmethod
-    def __get_plugin_module_from_plugin_file_path(plugin_file_path: str):
+    def __get_plugin_module_from_plugin_file_path(self, plugin_file_path: str):
         plugin_module_path = FileSystem.get_file_path_after_root_directory(plugin_file_path)
         plugin_module_path_without_file_extension = FileSystem.remove_file_extension(plugin_module_path)
         plugin_module_import_path = '.'.join(FileSystem.get_path_sections(plugin_module_path_without_file_extension))
@@ -49,13 +46,13 @@ class PluginLoader:
         for plugin_class_name, plugin_class in inspect.getmembers(plugin_module, inspect.isclass):
             if plugin_class.__module__ == plugin_module.__name__:
                 plugin_metadata = PluginMetadata(**plugin_configuration)
-                self.plugin_manager.register_plugin(Plugin(plugin_metadata, plugin_class()))
+                self.plugins.append(Plugin(plugin_metadata, plugin_class()))
 
-    def load_plugins(self, plugins_directory: str = FileSystem.get_plugins_directory()) -> List[str]:
-        plugin_candidate_file_paths = PluginLoader.__discover_plugin_paths(plugins_directory)
+    def load_plugins(self) -> List[str]:
+        plugin_candidate_file_paths = self.__discover_plugin_paths()
 
         for plugin_candidate_file_path in plugin_candidate_file_paths:
-            plugin_candidate_configuration = PluginLoader.__get_plugin_configuration_from_plugin_file_path(plugin_candidate_file_path)
+            plugin_candidate_configuration = self.__get_plugin_configuration_from_plugin_file_path(plugin_candidate_file_path)
 
             if not plugin_candidate_configuration:
                 print(f"no plugin configuration found for {plugin_candidate_file_path}")
@@ -64,14 +61,10 @@ class PluginLoader:
 
             if plugin_candidate_configuration.get('enabled', False):
                 try:
-                    plugin_module = PluginLoader.__get_plugin_module_from_plugin_file_path(plugin_candidate_file_path)
+                    plugin_module = self.__get_plugin_module_from_plugin_file_path(plugin_candidate_file_path)
                     self.__load_plugin(plugin_module, plugin_candidate_configuration)
 
                 except Exception as e:
                     print(f"Error loading plugin {plugin_candidate_file_path}: {e}")
-                finally:
-                    print('='*100)
-                    print(self.plugin_manager.registry.plugins)
-                    print('='*100)
             else:
                 print(f"plugin {plugin_candidate_file_path} found, but is disabled in plugin configuration file: {FileSystemConfiguration.PLUGIN_CONFIGUATION_FILE_NAME.value}")
