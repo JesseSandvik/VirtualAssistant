@@ -7,5 +7,5 @@ from .plugin.plugin_registry_interface import IPluginRegistry
 from .plugin.plugin_validator_interface import IPluginValidator
 
 from .plugin.validators.plugin_instance_type_validator import PluginInstanceTypeValidator
-from .plugin.validators.plugin_metadata_validator import PluginMetadataValidator
+from .plugin.validators.plugin_metadata_type_validator import PluginMetadataTypeValidator
 from .plugin.validators.plugin_validator_handler_interface import IPluginValidatorHandler

@@ -1,7 +1,7 @@
-from src.domain import IPluginValidator, PluginInstanceTypeValidator, PluginMetadataValidator
+from src.domain import IPluginValidator, PluginInstanceTypeValidator, PluginMetadataTypeValidator
 
 
 class FileSystemPluginValidator(IPluginValidator):
 
     def validate(self, plugin):
-        PluginInstanceTypeValidator(PluginMetadataValidator()).validate(plugin)
+        PluginInstanceTypeValidator(PluginMetadataTypeValidator()).validate(plugin)
