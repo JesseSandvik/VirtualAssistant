@@ -12,5 +12,5 @@ class PluginRegistry:
     def get_plugin(self, plugin_name: str) -> object:
         return self.plugins.get(plugin_name)
     
-    def list_plugins(self) -> list:
-        return list(self.plugins.keys())
+    def get_all_plugins(self) -> Dict[str, object]:
+        return self.plugins

@@ -1,0 +1,4 @@
+
+
+class PluginValidator:
+    pass
