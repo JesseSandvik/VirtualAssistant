@@ -1,0 +1,6 @@
+plugin_name: 'Virtual Assistant Speech Interface Plugin'
+description: 'This plugin enables speech communication with a virtual assistant.'
+version: '1.0.0'
+author_name: 'Jesse Sandvik'
+author_email: 'sandvikjesse@gmail.com'
+enabled: true
