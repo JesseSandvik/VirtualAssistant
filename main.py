@@ -12,4 +12,4 @@ if __name__ == "__main__":
         validator=plugin_validator
     ).load_plugins().register_plugins()
 
-    print(plugin_registry.registry)
+    print(plugin_registry.registered_plugins)
