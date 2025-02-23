@@ -11,10 +11,9 @@ class TestFileSystemPluginLoader(unittest.TestCase):
         project_root_directory = FileSystem.get_project_root_directory()
         plugins_test_directory = os.path.join(
             project_root_directory,
-            "src",
+            "tests",
             "infrastructure",
             'file_system',
-            "tests",
             "resources",
             "plugins",
             "test-plugin-a"
@@ -27,10 +26,9 @@ class TestFileSystemPluginLoader(unittest.TestCase):
         project_root_directory = FileSystem.get_project_root_directory()
         plugins_test_directory = os.path.join(
             project_root_directory,
-            "src",
+            "tests",
             "infrastructure",
             'file_system',
-            "tests",
             "resources",
             "plugins",
             "test-plugin-b"
@@ -43,10 +41,9 @@ class TestFileSystemPluginLoader(unittest.TestCase):
         project_root_directory = FileSystem.get_project_root_directory()
         plugins_test_directory = os.path.join(
             project_root_directory,
-            "src",
+            "tests",
             "infrastructure",
             'file_system',
-            "tests",
             "resources",
             "plugins",
             "test-plugin-c"
@@ -59,10 +56,9 @@ class TestFileSystemPluginLoader(unittest.TestCase):
         project_root_directory = FileSystem.get_project_root_directory()
         plugins_test_directory = os.path.join(
             project_root_directory,
-            "src",
+            "tests",
             "infrastructure",
             'file_system',
-            "tests",
             "resources",
             "plugins",
             "test-plugin-d"
@@ -75,10 +71,9 @@ class TestFileSystemPluginLoader(unittest.TestCase):
         project_root_directory = FileSystem.get_project_root_directory()
         plugins_test_directory = os.path.join(
             project_root_directory,
-            "src",
+            "tests",
             "infrastructure",
             'file_system',
-            "tests",
             "resources",
             "plugins",
             "test-plugin-e"
