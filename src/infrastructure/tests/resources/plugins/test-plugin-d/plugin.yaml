@@ -1,0 +1,9 @@
+name: 'Fake Plugin D'
+description: 'This plugin exists for testing purposes.'
+version: '1.0.0'
+author_name: 'Walter White'
+author_email: 'whatscooking@gmail.com'
+enabled: false
+keywords:
+  - pure
+  - blue

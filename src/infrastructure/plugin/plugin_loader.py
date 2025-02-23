@@ -30,9 +30,13 @@ class PluginLoader:
 
     @staticmethod
     def __get_plugin_configuration_from_plugin_file_path(plugin_file_path: str):
-        plugin_candidate_entry_point = FileSystem.get_file_name_from_path(plugin_file_path)
-        plugin_candidate_configuration_file_path = plugin_file_path.replace(plugin_candidate_entry_point, FileSystemConfiguration.PLUGIN_CONFIGUATION_FILE_NAME.value)
-        return FileSystem.load_configuration(plugin_candidate_configuration_file_path)
+        try:
+            plugin_candidate_entry_point = FileSystem.get_file_name_from_path(plugin_file_path)
+            plugin_candidate_configuration_file_path = plugin_file_path.replace(plugin_candidate_entry_point, FileSystemConfiguration.PLUGIN_CONFIGUATION_FILE_NAME.value)
+            return FileSystem.load_configuration(plugin_candidate_configuration_file_path)
+        except FileNotFoundError as e:
+            print(f"Error loading plugin configuration for {plugin_file_path}: {e}")
+            return {}
 
     @staticmethod
     def __get_plugin_module_from_plugin_file_path(plugin_file_path: str):
@@ -53,6 +57,11 @@ class PluginLoader:
         for plugin_candidate_file_path in plugin_candidate_file_paths:
             plugin_candidate_configuration = PluginLoader.__get_plugin_configuration_from_plugin_file_path(plugin_candidate_file_path)
 
+            if not plugin_candidate_configuration:
+                print(f"no plugin configuration found for {plugin_candidate_file_path}")
+                print(f"please make sure: {plugin_candidate_file_path} has a valid {FileSystemConfiguration.PLUGIN_CONFIGUATION_FILE_NAME.value} file")
+                continue
+
             if plugin_candidate_configuration.get('enabled', False):
                 try:
                     plugin_module = PluginLoader.__get_plugin_module_from_plugin_file_path(plugin_candidate_file_path)
@@ -64,3 +73,5 @@ class PluginLoader:
                     print('='*100)
                     print(self.plugin_manager.registry.plugins)
                     print('='*100)
+            else:
+                print(f"plugin {plugin_candidate_file_path} found, but is disabled in plugin configuration file: {FileSystemConfiguration.PLUGIN_CONFIGUATION_FILE_NAME.value}")
