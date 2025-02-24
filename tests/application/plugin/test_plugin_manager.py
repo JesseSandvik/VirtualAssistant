@@ -2,7 +2,7 @@ import unittest
 
 from unittest.mock import MagicMock
 
-from src.domain import Plugin, IPluginLoader, IPluginRegistry, IPluginValidator
+from src.domain import PluginEntity, IPluginLoader, IPluginRegistry, IPluginValidator
 from src.application import PluginManager
 
 
@@ -27,7 +27,7 @@ class TestPluginManager(unittest.TestCase):
 
     def test_register_plugins_should_call_validator_validate(self):
         mock_plugins = [
-            Plugin(None, instance=MockPlugin("PluginA"))
+            PluginEntity(None, instance=MockPlugin("PluginA"))
         ]
         self.mock_loader.plugins = mock_plugins
     
@@ -36,7 +36,7 @@ class TestPluginManager(unittest.TestCase):
 
     def test_register_plugins_should_call_registry_register_plugin(self):
         mock_plugins = [
-            Plugin(None, instance=MockPlugin("PluginA"))
+            PluginEntity(None, instance=MockPlugin("PluginA"))
         ]
         self.mock_loader.plugins = mock_plugins
     

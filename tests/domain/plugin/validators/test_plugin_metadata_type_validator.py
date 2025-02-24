@@ -1,6 +1,6 @@
 import unittest
 
-from src.domain import Plugin, PluginMetadata, PluginMetadataTypeValidator
+from src.domain import PluginEntity, PluginMetadata, PluginMetadataTypeValidator
 
 
 class TesPluginMetadataTypeValidator(unittest.TestCase):
@@ -9,7 +9,7 @@ class TesPluginMetadataTypeValidator(unittest.TestCase):
         self.validator = PluginMetadataTypeValidator()
 
     def test_should_not_throw_exception_for_valid_metadata_type(self):
-        valid_plugin = Plugin(PluginMetadata(
+        valid_plugin = PluginEntity(PluginMetadata(
             name="test",
             description="test",
             version="test",
@@ -26,7 +26,7 @@ class TesPluginMetadataTypeValidator(unittest.TestCase):
         self.assertTrue(validation_passed)
 
     def test_should_throw_exception_for_invalid_metadata_type(self):
-        invalid_plugin = Plugin(None, None)
+        invalid_plugin = PluginEntity(None, None)
         try:
             self.validator.validate(invalid_plugin)
             validation_passed = True

@@ -4,7 +4,7 @@ import os
 from importlib import import_module
 from typing import List
 
-from src.domain import PluginMetadata, Plugin, IPluginLoader
+from src.domain import PluginEntity, PluginMetadata, IPluginLoader
 from src.infrastructure.file_system import FileSystem, FileSystemConfiguration
 
 
@@ -13,7 +13,7 @@ class FileSystemPluginLoader(IPluginLoader):
     __IGNORE_FILES = ['__init__.py']
 
     def __init__(self, plugins_directory: str = FileSystem.get_plugins_directory()):
-        self.plugins: List[Plugin] = []
+        self.plugins: List[PluginEntity] = []
         self.plugins_directory = plugins_directory
 
     def __discover_plugin_paths(self) -> List[str]:
@@ -46,7 +46,7 @@ class FileSystemPluginLoader(IPluginLoader):
         for plugin_class_name, plugin_class in inspect.getmembers(plugin_module, inspect.isclass):
             if plugin_class.__module__ == plugin_module.__name__:
                 plugin_metadata = PluginMetadata(**plugin_configuration)
-                self.plugins.append(Plugin(plugin_metadata, plugin_class()))
+                self.plugins.append(PluginEntity(plugin_metadata, plugin_class()))
 
     def load_plugins(self) -> List[str]:
         plugin_candidate_file_paths = self.__discover_plugin_paths()

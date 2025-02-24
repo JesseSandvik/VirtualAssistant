@@ -1,6 +1,6 @@
 import unittest
 
-from src.domain import Plugin, PluginMetadata, IPluginCore
+from src.domain import PluginEntity, PluginMetadata, IPluginCore
 from src.infrastructure import FileSystemPluginValidator
 
 
@@ -18,7 +18,7 @@ class TestFileSystemPluginValidator(unittest.TestCase):
         self.validator = FileSystemPluginValidator()
 
     def test_should_throw_exception_for_invalid_metadata_type_and_invalid_instance_type(self):
-        invalid_plugin = Plugin(None, MockInvalidPlugin())
+        invalid_plugin = PluginEntity(None, MockInvalidPlugin())
         try:
             self.validator.validate(invalid_plugin)
             validation_passed = True
@@ -28,7 +28,7 @@ class TestFileSystemPluginValidator(unittest.TestCase):
         self.assertFalse(validation_passed)
 
     def test_should_throw_exception_for_valid_metadata_type_and_invalid_instance_type(self):
-        valid_plugin = Plugin(PluginMetadata(
+        valid_plugin = PluginEntity(PluginMetadata(
             name="test",
             description="test",
             version="test",
@@ -45,7 +45,7 @@ class TestFileSystemPluginValidator(unittest.TestCase):
         self.assertFalse(validation_passed)
 
     def test_should_throw_exception_for_invalid_metadata_type_and_valid_instance_type(self):
-        valid_plugin = Plugin(None, MockValidPlugin())
+        valid_plugin = PluginEntity(None, MockValidPlugin())
         try:
             self.validator.validate(valid_plugin)
             validation_passed = True
@@ -55,7 +55,7 @@ class TestFileSystemPluginValidator(unittest.TestCase):
         self.assertFalse(validation_passed)
 
     def test_should_not_throw_exception_for_valid_metadata_type_and_valid_instance_type(self):
-        valid_plugin = Plugin(PluginMetadata(
+        valid_plugin = PluginEntity(PluginMetadata(
             name="test",
             description="test",
             version="test",
