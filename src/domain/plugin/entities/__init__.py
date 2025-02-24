@@ -1,1 +1,2 @@
 from .plugin_entity import PluginEntity
+from .plugin_metadata_entity import PluginMetadataEntity

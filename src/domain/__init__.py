@@ -1,4 +1,5 @@
 from .plugin.entities import PluginEntity
+from .plugin.entities import PluginMetadataEntity
 
 from .plugin.models.plugin_metadata import PluginMetadata
 
