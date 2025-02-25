@@ -1,7 +1,7 @@
 from .entities import PluginEntity
 from .entities import PluginMetadataEntity
 
-from .services.plugin_metadata_integrity_service_interface import IPluginMetadataIntegrityService
+from .plugin_metadata_hasher_interface import IPluginMetadataHasher
 
 from .validators.plugin_instance_type_validator import PluginInstanceTypeValidator
 from .validators.plugin_metadata_type_validator import PluginMetadataTypeValidator
@@ -10,5 +10,5 @@ from .validators.plugin_validator_handler_interface import IPluginValidatorHandl
 from .plugin_core_interface import IPluginCore
 from .plugin_loader_interface import IPluginLoader
 from .plugin_registry_interface import IPluginRegistry
-from .plugin_repository_interface import IPluginRepository
+from .plugin_metadata_repository_interface import IPluginMetadataRepository
 from .plugin_validator_interface import IPluginValidator

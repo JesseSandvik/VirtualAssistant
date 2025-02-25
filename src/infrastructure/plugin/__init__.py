@@ -1,1 +1,1 @@
-from .services.plugin_metadata_sha256_integrity_service import IPluginMetadataIntegrityService
+from .plugin_metadata_sha256_hasher import PluginMetadataSHA256Hasher

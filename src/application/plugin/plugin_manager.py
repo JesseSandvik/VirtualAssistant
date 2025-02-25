@@ -4,7 +4,10 @@ from src.domain import IPluginLoader, IPluginRegistry, IPluginValidator
 class PluginManager:
 
     def __init__(self, loader: IPluginLoader, registry: IPluginRegistry, validator: IPluginValidator):
+        #TODO: self.metadata loader = IPluginMetadataLoader
+        # TODO: self.metadata_integrity_service = IPluginMetadataIntegrityService
         self.loader = loader
+        # hasher
         self.validator = validator
         self.registry = registry
 
