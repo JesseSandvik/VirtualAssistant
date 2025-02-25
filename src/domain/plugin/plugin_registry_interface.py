@@ -13,4 +13,4 @@ class IPluginRegistry(ABC):
         return self.registered_plugins.get(plugin_name)
 
     def register_plugin(self, plugin: PluginEntity) -> None:
-        self.registered_plugins[plugin.instance.__class__.__name__] = plugin
+        self.registered_plugins[plugin.plugin_id] = plugin

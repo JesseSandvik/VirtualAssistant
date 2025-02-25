@@ -1,8 +1,6 @@
 from .entities import PluginEntity
 from .entities import PluginMetadataEntity
 
-from .models.plugin_metadata import PluginMetadata
-
 from .plugin_core_interface import IPluginCore
 from .plugin_loader_interface import IPluginLoader
 from .plugin_registry_interface import IPluginRegistry

@@ -1,7 +1,13 @@
 import unittest
 
-from src.domain import PluginEntity, PluginMetadata, IPluginCore
+from src.domain import PluginMetadataEntity, PluginEntity, IPluginCore
 from src.infrastructure import FileSystemPluginValidator
+
+
+class MockInvalidPluginMetadataType:
+
+    def __init__(self):
+        self.plugin_id = "XXXX"
 
 
 class MockValidPlugin(IPluginCore):
@@ -15,10 +21,17 @@ class MockInvalidPlugin:
 class TestFileSystemPluginValidator(unittest.TestCase):
 
     def setUp(self):
+        self.mock_plugin_metadata = PluginMetadataEntity(
+            name="Test Plugin",
+            description="This is for testing purposes.",
+            version="1.0.0",
+            author_name="Walter White",
+            author_email="XXXXXXXXXXXXXXXX"
+        )
         self.validator = FileSystemPluginValidator()
 
     def test_should_throw_exception_for_invalid_metadata_type_and_invalid_instance_type(self):
-        invalid_plugin = PluginEntity(None, MockInvalidPlugin())
+        invalid_plugin = PluginEntity(MockInvalidPluginMetadataType(), MockInvalidPlugin())
         try:
             self.validator.validate(invalid_plugin)
             validation_passed = True
@@ -28,14 +41,7 @@ class TestFileSystemPluginValidator(unittest.TestCase):
         self.assertFalse(validation_passed)
 
     def test_should_throw_exception_for_valid_metadata_type_and_invalid_instance_type(self):
-        valid_plugin = PluginEntity(PluginMetadata(
-            name="test",
-            description="test",
-            version="test",
-            author_name="Test Author",
-            author_email="XXXXXXXXXXXXX",
-            enabled=False
-        ), MockInvalidPlugin())
+        valid_plugin = PluginEntity(self.mock_plugin_metadata, MockInvalidPlugin())
         try:
             self.validator.validate(valid_plugin)
             validation_passed = True
@@ -45,7 +51,7 @@ class TestFileSystemPluginValidator(unittest.TestCase):
         self.assertFalse(validation_passed)
 
     def test_should_throw_exception_for_invalid_metadata_type_and_valid_instance_type(self):
-        valid_plugin = PluginEntity(None, MockValidPlugin())
+        valid_plugin = PluginEntity(MockInvalidPluginMetadataType(), MockValidPlugin())
         try:
             self.validator.validate(valid_plugin)
             validation_passed = True
@@ -55,14 +61,7 @@ class TestFileSystemPluginValidator(unittest.TestCase):
         self.assertFalse(validation_passed)
 
     def test_should_not_throw_exception_for_valid_metadata_type_and_valid_instance_type(self):
-        valid_plugin = PluginEntity(PluginMetadata(
-            name="test",
-            description="test",
-            version="test",
-            author_name="Test Author",
-            author_email="XXXXXXXXXXXXX",
-            enabled=False
-        ), MockValidPlugin())
+        valid_plugin = PluginEntity(self.mock_plugin_metadata, MockValidPlugin())
         try:
             self.validator.validate(valid_plugin)
             validation_passed = True

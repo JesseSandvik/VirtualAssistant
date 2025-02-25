@@ -4,7 +4,7 @@ import os
 from importlib import import_module
 from typing import List
 
-from src.domain import PluginEntity, PluginMetadata, IPluginLoader
+from src.domain import PluginMetadataEntity, PluginEntity, IPluginLoader
 from src.infrastructure.file_system import FileSystem, FileSystemConfiguration
 
 
@@ -45,7 +45,13 @@ class FileSystemPluginLoader(IPluginLoader):
     def __load_plugin(self, plugin_module, plugin_configuration):
         for plugin_class_name, plugin_class in inspect.getmembers(plugin_module, inspect.isclass):
             if plugin_class.__module__ == plugin_module.__name__:
-                plugin_metadata = PluginMetadata(**plugin_configuration)
+                plugin_metadata = PluginMetadataEntity(
+                    name=plugin_configuration.get('name'),
+                    description=plugin_configuration.get('description'),
+                    version=plugin_configuration.get('version'),
+                    author_name=plugin_configuration.get('author_name'),
+                    author_email=plugin_configuration.get('author_email')
+                )
                 self.plugins.append(PluginEntity(plugin_metadata, plugin_class()))
 
     def load_plugins(self) -> List[str]:
