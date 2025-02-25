@@ -2,3 +2,5 @@ from .file_system.file_system import FileSystem, FileSystemConfiguration
 from .file_system.plugin.file_system_plugin_loader import FileSystemPluginLoader
 from .file_system.plugin.file_system_plugin_registry import FileSystemPluginRegistry
 from .file_system.plugin.file_system_plugin_validator import FileSystemPluginValidator
+
+from .plugin.services.plugin_metadata_sha256_integrity_service import PluginMetadataSHA256IntegrityService

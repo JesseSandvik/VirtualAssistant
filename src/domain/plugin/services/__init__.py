@@ -1,0 +1,1 @@
+from .plugin_metadata_integrity_service_interface import IPluginMetadataIntegrityService

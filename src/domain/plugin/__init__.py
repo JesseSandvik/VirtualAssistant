@@ -1,11 +1,14 @@
 from .entities import PluginEntity
 from .entities import PluginMetadataEntity
 
-from .plugin_core_interface import IPluginCore
-from .plugin_loader_interface import IPluginLoader
-from .plugin_registry_interface import IPluginRegistry
-from .plugin_validator_interface import IPluginValidator
+from .services.plugin_metadata_integrity_service_interface import IPluginMetadataIntegrityService
 
 from .validators.plugin_instance_type_validator import PluginInstanceTypeValidator
 from .validators.plugin_metadata_type_validator import PluginMetadataTypeValidator
 from .validators.plugin_validator_handler_interface import IPluginValidatorHandler
+
+from .plugin_core_interface import IPluginCore
+from .plugin_loader_interface import IPluginLoader
+from .plugin_registry_interface import IPluginRegistry
+from .plugin_repository_interface import IPluginRepository
+from .plugin_validator_interface import IPluginValidator
