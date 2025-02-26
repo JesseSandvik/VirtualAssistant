@@ -1,6 +1,6 @@
 from abc import abstractmethod
 
-from src.domain import PluginCore
+from src.domain.plugin import PluginCore
 
 
 class OutputPluginCore(PluginCore):

@@ -1,3 +1,9 @@
 from .core.file_system_plugin_core_loader import FileSystemPluginLoader
+from .core.file_system_plugin_core_validator import FileSystemPluginCoreValidator
+
+from .metadata.file_system_plugin_metadata_loader import FileSystemPluginMetadataLoader
+from .metadata.file_system_plugin_metadata_repository import FileSystemPluginMetadataRepository
+from .metadata.file_system_plugin_metadata_validator import FileSystemPluginMetadataValidator
+from .metadata.file_system_plugin_metadata import FileSystemPluginMetadata
+
 from .file_system_plugin_registry import FileSystemPluginRegistry
-from .core.file_system_plugin_core_validator import FileSystemPluginValidator

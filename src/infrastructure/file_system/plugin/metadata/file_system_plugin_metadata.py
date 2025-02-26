@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 from src.domain.plugin import PluginMetadata
 
+
 @dataclass
 class FileSystemPluginMetadata(PluginMetadata):
     plugin_file_path: str
