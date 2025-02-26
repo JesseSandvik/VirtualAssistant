@@ -1,4 +1,4 @@
 from .file_system import FileSystem, FileSystemConfiguration
-from .plugin.file_system_plugin_loader import FileSystemPluginLoader
+from .plugin.core.file_system_plugin_core_loader import FileSystemPluginLoader
 from .plugin.file_system_plugin_registry import FileSystemPluginRegistry
-from .plugin.file_system_plugin_validator import FileSystemPluginValidator
+from .plugin.core.file_system_plugin_core_validator import FileSystemPluginValidator

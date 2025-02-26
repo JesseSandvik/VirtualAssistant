@@ -1,9 +1,9 @@
 from abc import abstractmethod
 
-from src.domain import IPluginCore
+from src.domain import PluginCore
 
 
-class InputPluginCoreInterface(IPluginCore):
+class InputPluginCore(PluginCore):
 
     @abstractmethod
     def get_input(self) -> str:

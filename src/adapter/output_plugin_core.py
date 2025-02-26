@@ -1,9 +1,9 @@
 from abc import abstractmethod
 
-from src.domain import IPluginCore
+from src.domain import PluginCore
 
 
-class OutputPluginCoreInterface(IPluginCore):
+class OutputPluginCore(PluginCore):
     
     @abstractmethod
     def send_output(self, response: str):

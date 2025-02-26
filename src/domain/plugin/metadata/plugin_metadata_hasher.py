@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class IPluginMetadataHasher(ABC):
+class PluginMetadataHasher(ABC):
 
     @abstractmethod
     def calculate_hash(self, data: bytes) -> str:

@@ -5,7 +5,7 @@ from uuid import uuid4
 
 
 @dataclass
-class PluginMetadataEntity:
+class PluginMetadata:
     plugin_id: str
     name: str
     description: str

@@ -1,6 +1,6 @@
 from .file_system.file_system import FileSystem, FileSystemConfiguration
-from .file_system.plugin.file_system_plugin_loader import FileSystemPluginLoader
+from .file_system.plugin.core.file_system_plugin_core_loader import FileSystemPluginLoader
 from .file_system.plugin.file_system_plugin_registry import FileSystemPluginRegistry
-from .file_system.plugin.file_system_plugin_validator import FileSystemPluginValidator
+from .file_system.plugin.core.file_system_plugin_core_validator import FileSystemPluginValidator
 
 from .plugin.plugin_metadata_sha256_hasher import PluginMetadataSHA256Hasher

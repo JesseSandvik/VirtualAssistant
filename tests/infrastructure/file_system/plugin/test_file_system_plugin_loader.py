@@ -1,7 +1,7 @@
 import os
 import unittest
 
-from src.infrastructure.file_system.plugin.file_system_plugin_loader import FileSystemPluginLoader
+from src.infrastructure.file_system.plugin.core.file_system_plugin_core_loader import FileSystemPluginLoader
 from src.infrastructure.file_system.file_system import FileSystem
 
 

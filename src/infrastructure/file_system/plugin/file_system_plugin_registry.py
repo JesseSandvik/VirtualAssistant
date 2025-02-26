@@ -1,5 +1,5 @@
-from src.domain import IPluginRegistry
+from src.domain.plugin import PluginRegistry
 
 
-class FileSystemPluginRegistry(IPluginRegistry):
+class FileSystemPluginRegistry(PluginRegistry):
     pass

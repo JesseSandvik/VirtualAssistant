@@ -4,16 +4,18 @@ import os
 from importlib import import_module
 from typing import List
 
-from src.domain import PluginMetadataEntity, PluginEntity, IPluginLoader
+from src.domain.plugin.core import PluginCoreLoader
+from src.domain.plugin.metadata import PluginMetadata
+from src.domain.plugin import Plugin
 from src.infrastructure.file_system import FileSystem, FileSystemConfiguration
 
 
-class FileSystemPluginLoader(IPluginLoader):
+class FileSystemPluginLoader(PluginCoreLoader):
     __IGNORE_DIRECTORIES = ['__pycache__']
     __IGNORE_FILES = ['__init__.py']
 
     def __init__(self, plugins_directory: str = FileSystem.get_plugins_directory()):
-        self.plugins: List[PluginEntity] = []
+        self.plugins: List[Plugin] = []
         self.plugins_directory = plugins_directory
 
     def __discover_plugin_paths(self) -> List[str]:
@@ -45,14 +47,14 @@ class FileSystemPluginLoader(IPluginLoader):
     def __load_plugin(self, plugin_module, plugin_configuration):
         for plugin_class_name, plugin_class in inspect.getmembers(plugin_module, inspect.isclass):
             if plugin_class.__module__ == plugin_module.__name__:
-                plugin_metadata = PluginMetadataEntity(
+                plugin_metadata = PluginMetadata(
                     name=plugin_configuration.get('name'),
                     description=plugin_configuration.get('description'),
                     version=plugin_configuration.get('version'),
                     author_name=plugin_configuration.get('author_name'),
                     author_email=plugin_configuration.get('author_email')
                 )
-                self.plugins.append(PluginEntity(plugin_metadata, plugin_class()))
+                self.plugins.append(Plugin(plugin_metadata, plugin_class()))
 
     def load_plugins(self) -> List[str]:
         plugin_candidate_file_paths = self.__discover_plugin_paths()

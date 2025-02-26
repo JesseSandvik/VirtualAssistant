@@ -1,9 +1,9 @@
 import hashlib
 
-from src.domain import IPluginMetadataHasher
+from src.domain.plugin import PluginMetadataHasher
 
 
-class PluginMetadataSHA256Hasher(IPluginMetadataHasher):
+class PluginMetadataSHA256Hasher(PluginMetadataHasher):
 
     def calculate_hash(self, data: bytes):
         return hashlib.sha256(data).hexdigest()

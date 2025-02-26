@@ -1,16 +1,15 @@
-from .entities import PluginEntity
-from .entities import PluginMetadataEntity
+from core.plugin_core_loader import PluginCoreLoader
+from core.plugin_core_type_validator import PluginCoreTypeValidator
+from core.plugin_core_validator import PluginCoreValidator
+from core.plugin_core import PluginCore
 
-from .validators.plugin_core_type_validator import PluginCoreTypeValidator
-from .validators.plugin_metadata_type_validator import PluginMetadataTypeValidator
-from .validators.plugin_validator_handler_interface import IPluginValidatorHandler
+from .metadata.plugin_metadata_hasher import PluginMetadataHasher
+from .metadata.plugin_metadata_loader import PluginMetadataLoader
+from .metadata.plugin_metadata_repository import PluginMetadataRepository
+from .metadata.plugin_metadata_type_validator import PluginMetadataTypeValidator
+from .metadata.plugin_metadata_validator import PluginMetadataValidator
+from .metadata.plugin_metadata import PluginMetadata
 
-from .plugin_core_interface import IPluginCore
-from .plugin_core_loader_interface import IPluginCoreLoader
-from .plugin_core_validator_interface import IPluginCoreValidator
-
-from .plugin_metadata_hasher_interface import IPluginMetadataHasher
-from .plugin_metadata_loader_interface import IPluginMetadataLoader
-from .plugin_metadata_repository_interface import IPluginMetadataRepository
-
-from .plugin_registry_interface import IPluginRegistry
+from .plugin_registry import PluginRegistry
+from .plugin_validator_handler import PluginValidatorHandler
+from .plugin import Plugin

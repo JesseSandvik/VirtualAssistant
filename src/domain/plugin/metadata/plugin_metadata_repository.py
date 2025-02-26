@@ -1,21 +1,21 @@
 from abc import ABC, abstractmethod
 from typing import List, Optional
 
-from src.domain.plugin.entities.plugin_metadata_entity import PluginMetadataEntity
+from src.domain.plugin.metadata.plugin_metadata import PluginMetadata
 
 
-class IPluginMetadataRepository(ABC):
+class PluginMetadataRepository(ABC):
 
     @abstractmethod
-    def save(self, plugin_metadata: PluginMetadataEntity) -> None:
+    def save(self, plugin_metadata: PluginMetadata) -> None:
         pass
     
     @abstractmethod
-    def get(self, id: str) -> Optional[PluginMetadataEntity]:
+    def get(self, id: str) -> Optional[PluginMetadata]:
         pass
     
     @abstractmethod
-    def list(self) -> List[PluginMetadataEntity]:
+    def list(self) -> List[PluginMetadata]:
         pass
     
     @abstractmethod
