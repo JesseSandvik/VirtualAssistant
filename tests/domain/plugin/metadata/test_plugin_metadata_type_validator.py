@@ -1,6 +1,6 @@
 import unittest
 
-from src.domain.plugin import PluginMetadata, PluginMetadataTypeValidator
+from src.domain import PluginMetadata, PluginMetadataTypeValidator
 
 
 class MockInvalidPluginMetadataType:

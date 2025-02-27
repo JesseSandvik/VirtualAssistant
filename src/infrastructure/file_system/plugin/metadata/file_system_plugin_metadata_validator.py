@@ -1,4 +1,4 @@
-from src.domain.plugin import PluginMetadata, PluginMetadataValidator, PluginMetadataTypeValidator
+from src.domain import PluginMetadata, PluginMetadataValidator, PluginMetadataTypeValidator
 
 
 class FileSystemPluginMetadataValidator(PluginMetadataValidator):

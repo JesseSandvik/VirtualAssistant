@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from src.domain.plugin.core import PluginCore
+from src.domain.plugin.core.plugin_core import PluginCore
 from src.domain.plugin.metadata.plugin_metadata import PluginMetadata
 
 

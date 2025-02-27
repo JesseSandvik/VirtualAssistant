@@ -1,7 +1,7 @@
-from src.adapter import InputPluginCoreInterface, OutputPluginCoreInterface
+from src.adapter import InputPluginCore, OutputPluginCore
 
 
-class TextCommunicationPlugin(InputPluginCoreInterface, OutputPluginCoreInterface):
+class TextCommunicationPlugin(InputPluginCore, OutputPluginCore):
 
     def get_input(self):
         return input("Enter text: ")

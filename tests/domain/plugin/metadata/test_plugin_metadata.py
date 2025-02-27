@@ -1,6 +1,6 @@
 import unittest
 
-from src.domain.plugin import PluginMetadata
+from src.domain import PluginMetadata
 
 
 class TestPluginMetadata(unittest.TestCase):

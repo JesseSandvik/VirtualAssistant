@@ -1,7 +1,7 @@
-from core.plugin_core_loader import PluginCoreLoader
-from core.plugin_core_type_validator import PluginCoreTypeValidator
-from core.plugin_core_validator import PluginCoreValidator
-from core.plugin_core import PluginCore
+from .core.plugin_core_loader import PluginCoreLoader
+from .core.plugin_core_type_validator import PluginCoreTypeValidator
+from .core.plugin_core_validator import PluginCoreValidator
+from .core.plugin_core import PluginCore
 
 from .metadata.plugin_metadata_hasher import PluginMetadataHasher
 from .metadata.plugin_metadata_loader import PluginMetadataLoader

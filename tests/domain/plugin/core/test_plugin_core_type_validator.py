@@ -1,6 +1,6 @@
 import unittest
 
-from src.domain.plugin import PluginCore, PluginCoreTypeValidator
+from src.domain import PluginCore, PluginCoreTypeValidator
 
 
 class MockValidPlugin(PluginCore):

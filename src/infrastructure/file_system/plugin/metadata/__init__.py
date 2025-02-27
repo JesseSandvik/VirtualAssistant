@@ -1,4 +1,3 @@
 from .file_system_plugin_metadata_loader import FileSystemPluginMetadataLoader
 from .file_system_plugin_metadata_repository import FileSystemPluginMetadataRepository
 from .file_system_plugin_metadata_validator import FileSystemPluginMetadataValidator
-from .file_system_plugin_metadata import FileSystemPluginMetadata
