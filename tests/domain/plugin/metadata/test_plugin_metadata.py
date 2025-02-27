@@ -1,12 +1,12 @@
 import unittest
 
-from src.domain import PluginMetadataEntity
+from src.domain.plugin import PluginMetadata
 
 
-class TestPluginMetadataEntity(unittest.TestCase):
+class TestPluginMetadata(unittest.TestCase):
 
     def setUp(self):
-        self.plugin_metadata = PluginMetadataEntity(
+        self.plugin_metadata = PluginMetadata(
             name="Test Plugin",
             description="This is for testing purposes.",
             version="1.0.0",

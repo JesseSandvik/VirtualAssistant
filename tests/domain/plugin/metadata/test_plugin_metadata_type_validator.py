@@ -1,6 +1,6 @@
 import unittest
 
-from src.domain import PluginMetadataEntity, PluginEntity, PluginMetadataTypeValidator
+from src.domain.plugin import PluginMetadata, PluginMetadataTypeValidator
 
 
 class MockInvalidPluginMetadataType:
@@ -12,7 +12,7 @@ class MockInvalidPluginMetadataType:
 class TesPluginMetadataTypeValidator(unittest.TestCase):
 
     def setUp(self):
-        self.mock_plugin_metadata = PluginMetadataEntity(
+        self.mock_plugin_metadata = PluginMetadata(
             name="Test Plugin",
             description="This is for testing purposes.",
             version="1.0.0",
@@ -22,9 +22,8 @@ class TesPluginMetadataTypeValidator(unittest.TestCase):
         self.validator = PluginMetadataTypeValidator()
 
     def test_should_not_throw_exception_for_valid_metadata_type(self):
-        valid_plugin = PluginEntity(self.mock_plugin_metadata, None)
         try:
-            self.validator.validate(valid_plugin)
+            self.validator.validate(self.mock_plugin_metadata)
             validation_passed = True
         except Exception as e:
             validation_passed = False
@@ -32,9 +31,8 @@ class TesPluginMetadataTypeValidator(unittest.TestCase):
         self.assertTrue(validation_passed)
 
     def test_should_throw_exception_for_invalid_metadata_type(self):
-        invalid_plugin = PluginEntity(MockInvalidPluginMetadataType(), None)
         try:
-            self.validator.validate(invalid_plugin)
+            self.validator.validate(MockInvalidPluginMetadataType())
             validation_passed = True
         except Exception as e:
             validation_passed = False
