@@ -1,1 +1,2 @@
-from .plugin_manager import PluginManager
+from .core.plugin_core_manager import PluginCoreManager
+from .metadata.plugin_metadata_manager import PluginMetadataManager

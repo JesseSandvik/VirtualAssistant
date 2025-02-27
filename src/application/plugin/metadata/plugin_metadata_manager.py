@@ -14,7 +14,6 @@ class PluginMetadataManager:
         self.hasher = hasher
         self.validator = validator
         self.repository = repository
-        self.validate_plugin_metadata = {}
 
     def load_plugin_metadata(self):
         self.loader.load()
@@ -34,4 +33,3 @@ class PluginMetadataManager:
         for plugin_metadata in self.loader.plugin_metadata:
             self.repository.save(plugin_metadata)
         return self
-

@@ -1,0 +1,1 @@
+from .plugin_metadata_manager import PluginMetadataManager
