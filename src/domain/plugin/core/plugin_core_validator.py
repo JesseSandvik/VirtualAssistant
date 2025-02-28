@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from src.domain.plugin.core.plugin_core import PluginCore
+from src.domain import PluginCore
 
 
 class PluginCoreValidator(ABC):

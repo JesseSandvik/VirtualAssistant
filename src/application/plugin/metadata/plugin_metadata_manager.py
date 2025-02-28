@@ -1,4 +1,4 @@
-from src.domain.plugin import PluginMetadataLoader, PluginMetadataHasher, PluginCoreTypeValidator, PluginMetadataRepository
+from src.domain import PluginMetadataLoader, PluginMetadataHasher, PluginCoreTypeValidator, PluginMetadataRepository
 
 
 class PluginMetadataManager:

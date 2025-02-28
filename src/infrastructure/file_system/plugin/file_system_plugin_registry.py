@@ -1,4 +1,4 @@
-from src.domain.plugin import PluginRegistry
+from src.domain import PluginRegistry
 
 
 class FileSystemPluginRegistry(PluginRegistry):

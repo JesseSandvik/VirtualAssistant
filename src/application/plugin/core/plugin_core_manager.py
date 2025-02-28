@@ -1,4 +1,4 @@
-from src.domain.plugin import PluginCoreLoader, PluginCoreValidator
+from src.domain import PluginCoreLoader, PluginCoreValidator
 
 
 class PluginCoreManager:

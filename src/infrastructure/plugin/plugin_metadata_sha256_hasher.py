@@ -1,6 +1,6 @@
 import hashlib
 
-from src.domain.plugin import PluginMetadataHasher
+from src.domain import PluginMetadataHasher
 
 
 class PluginMetadataSHA256Hasher(PluginMetadataHasher):

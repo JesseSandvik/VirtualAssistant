@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from src.domain.plugin import PluginMetadata, PluginMetadataLoader
+from src.domain import PluginMetadata, PluginMetadataLoader
 
 
 class FileSystemPluginMetadataLoader(PluginMetadataLoader):

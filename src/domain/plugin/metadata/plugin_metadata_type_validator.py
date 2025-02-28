@@ -1,5 +1,5 @@
-from src.domain.plugin.plugin_validator_handler import PluginValidatorHandler
-from src.domain.plugin.metadata.plugin_metadata import PluginMetadata
+from src.domain import PluginValidatorHandler
+from src.domain import PluginMetadata
 
 
 class PluginMetadataTypeValidator(PluginValidatorHandler):

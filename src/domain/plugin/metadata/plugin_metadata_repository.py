@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List, Optional
 
-from src.domain.plugin.metadata.plugin_metadata import PluginMetadata
+from src.domain import PluginMetadata
 
 
 class PluginMetadataRepository(ABC):

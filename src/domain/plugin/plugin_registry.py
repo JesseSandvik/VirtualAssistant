@@ -1,7 +1,7 @@
 from abc import ABC
 from typing import Dict
 
-from src.domain.plugin.plugin import Plugin
+from src.domain import Plugin
 
 
 class PluginRegistry(ABC):

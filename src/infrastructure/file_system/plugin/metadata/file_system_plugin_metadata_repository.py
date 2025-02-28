@@ -1,4 +1,4 @@
-from src.domain.plugin import PluginMetadataRepository
+from src.domain import PluginMetadataRepository
 
 
 class FileSystemPluginMetadataRepository(PluginMetadataRepository):
