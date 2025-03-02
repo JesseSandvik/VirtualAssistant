@@ -1,0 +1,11 @@
+name: 'Plugin C'
+description: 'An example of a plugin defined as Plugin C'
+version: '1.0.0'
+author: 'John Doe'
+entry_point: 'plugin_c.py'
+required_python_version: '3.13.2'
+enabled: true
+tags:
+  - 'example'
+  - 'plugin'
+  - 'plugin_c'
