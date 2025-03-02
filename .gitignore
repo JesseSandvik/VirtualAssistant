@@ -1,0 +1,8 @@
+# IDE
+**/.vscode/
+
+# Mac
+**/.DS_Store
+
+# Python
+**/__pycache__/
