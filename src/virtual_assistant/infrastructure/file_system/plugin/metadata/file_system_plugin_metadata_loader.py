@@ -40,9 +40,6 @@ class FileSystemPluginMetadataLoader(PluginMetadataLoader):
 
     def load(self):
         plugin_configuration_file_paths = self.__discover_plugin_configuration_files()
-
-        if len(plugin_configuration_file_paths) == 0:
-            return
-
+        
         for plugin_configuration_file_path in plugin_configuration_file_paths:
             self.__load_plugin_metadata(plugin_configuration_file_path)
