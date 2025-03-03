@@ -1,0 +1,25 @@
+{
+    "keyA": "valueA",
+    "keyB": {
+        "keyB1": "valueB1",
+        "keyB2": "valueB2"
+    },
+    "keyC": [
+        "valueC1",
+        "valueC2",
+        "valueC3"
+    ],
+    "keyD": 1234,
+    "keyE": true,
+    "keyF": null,
+    "keyG": [
+        {
+            "keyG1": "valueG1",
+            "keyG2": "valueG2"
+        },
+        {
+            "keyG3": "valueG3",
+            "keyG4": "valueG4"
+        }
+    ]
+}
