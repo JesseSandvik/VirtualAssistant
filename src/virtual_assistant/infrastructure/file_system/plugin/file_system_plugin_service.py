@@ -7,6 +7,7 @@ from virtual_assistant.infrastructure.file_system.file_system_service import Fil
 class FileSystemPluginSettings(Enum):
     PROJECT_ROOT_DIRECTORY_NAME='virtual_assistant'
     DEFAULT_PLUGIN_CONFIGURATION_FILE_NAME = 'plugin.yaml'
+    DEFAULT_PLUGIN_METADATA_FILE_SYSTEM_REPOSITORY_FILE_NAME = 'plugin_metadata_repository.json'
 
 class FileSystemPluginService(FileSystemService):
 
