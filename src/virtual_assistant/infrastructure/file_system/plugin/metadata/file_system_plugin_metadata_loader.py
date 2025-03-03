@@ -1,6 +1,6 @@
 import os
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 from virtual_assistant.domain.plugin.metadata.plugin_metadata import PluginMetadata
 from virtual_assistant.domain.plugin.metadata.plugin_metadata_loader import PluginMetadataLoader
@@ -10,7 +10,6 @@ from virtual_assistant.infrastructure.file_system.plugin.file_system_plugin_serv
 class FileSystemPluginMetadataLoader(PluginMetadataLoader):
 
     def __init__(self, plugins_root_directory: str = FileSystemPluginService.get_project_root_directory()):
-        super().__init__()
         self.plugins_root_directory = plugins_root_directory
 
     def __discover_plugin_configuration_files(self) -> Optional[List[str]]:
@@ -23,7 +22,7 @@ class FileSystemPluginMetadataLoader(PluginMetadataLoader):
                     found_plugins.append(os.path.join(root, file))
         return found_plugins
     
-    def __load_plugin_metadata(self, plugin_configuration_file_path: str) -> None:
+    def __load_plugin_metadata(self, plugin_configuration_file_path: str, all_plugin_metadata: Dict[str, PluginMetadata]) -> None:
         plugin_configuration_file_content = FileSystemPluginService.get_yaml_file_contents(plugin_configuration_file_path)
         plugin_metadata = PluginMetadata(
             entry_point=os.path.join(os.path.dirname(plugin_configuration_file_path), plugin_configuration_file_content.get('entry_point')),
@@ -36,10 +35,13 @@ class FileSystemPluginMetadataLoader(PluginMetadataLoader):
             dependencies=plugin_configuration_file_content.get('dependencies', []),
             tags=plugin_configuration_file_content.get('tags', [])
         )
-        self._add_plugin_metadata(plugin_metadata)
+        all_plugin_metadata[plugin_metadata.entry_point] = plugin_metadata
 
     def load(self):
         plugin_configuration_file_paths = self.__discover_plugin_configuration_files()
+        plugin_metadata = {}
         
         for plugin_configuration_file_path in plugin_configuration_file_paths:
-            self.__load_plugin_metadata(plugin_configuration_file_path)
+            self.__load_plugin_metadata(plugin_configuration_file_path, plugin_metadata)
+
+        return plugin_metadata
