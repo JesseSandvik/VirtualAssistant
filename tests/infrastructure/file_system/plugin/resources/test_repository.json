@@ -1,0 +1,57 @@
+[
+    {
+        "deeply_nested_plugin_a.py": {
+            "name": "Deeply Nested Plugin A",
+            "description": "An example of a deeply nested plugin defined as Plugin A",
+            "version": "1.0.0",
+            "author": "John Doe",
+            "entry_point": "deeply_nested_plugin_a.py",
+            "required_python_version": "3.13.2",
+            "enabled": true,
+            "tags": [
+                "example",
+                "plugin",
+                "plugin_a",
+                "nested",
+                "nested_plugin",
+                "deeply_nested",
+                "deeply_nested_plugin_a"
+            ]
+        }
+    },
+    {
+        "nested_plugin_b.py": {
+            "name": "Nested Plugin B",
+            "description": "An example of a nested plugin defined as Plugin B",
+            "version": "1.0.0",
+            "author": "John Doe",
+            "entry_point": "nested_plugin_b.py",
+            "required_python_version": "3.13.2",
+            "enabled": true,
+            "tags": [
+                "example",
+                "plugin",
+                "plugin_b",
+                "nested",
+                "nested_plugin",
+                "nested_plugin_b"
+            ]
+        }
+    },
+    {
+        "plugin_c.py": {
+            "name": "Plugin C",
+            "description": "An example of a plugin defined as Plugin C",
+            "version": "1.0.0",
+            "author": "John Doe",
+            "entry_point": "plugin_c.py",
+            "required_python_version": "3.13.2",
+            "enabled": true,
+            "tags": [
+                "example",
+                "plugin",
+                "plugin_c"
+            ]
+        }
+    }
+]
