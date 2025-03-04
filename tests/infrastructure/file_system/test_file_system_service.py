@@ -17,6 +17,19 @@ class TestFileSystemService(unittest.TestCase):
         json_file_content = FileSystemService.get_json_file_content(json_file_path)
         self.assertEqual(json_file_content['keyA'], 'valueA')
 
+    def test_append_json_to_file(self):
+        json_file_path = os.path.join(
+            os.getcwd(),
+            'tests',
+            'infrastructure',
+            'file_system',
+            'resources',
+            'test.json'
+        )
+        FileSystemService.append_json_to_file(json_file_path, { 'keyZ': 'valueZ' })
+        json_file_content = FileSystemService.get_json_file_content(json_file_path)
+        self.assertEqual(json_file_content['keyZ'], 'valueZ')
+
     def test_get_yaml_file_content(self):
         yaml_file_path = os.path.join(
             os.getcwd(),
