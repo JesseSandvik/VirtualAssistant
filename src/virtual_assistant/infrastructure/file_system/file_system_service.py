@@ -12,8 +12,8 @@ class FileSystemService:
         return file_content
     
     @staticmethod
-    def append_json_to_file(json_file_path: str, json_content: Dict[str, Any]) -> None:
-        with open(json_file_path, 'a') as file:
+    def write_json_to_file(json_file_path: str, json_content: Dict[str, Any]) -> None:
+        with open(json_file_path, 'w') as file:
             json.dump(json_content, file, indent=4)
 
     @staticmethod

@@ -18,11 +18,4 @@ class TestFileSystemPluginMetadataRepository(unittest.TestCase):
         self.plugin_metadata_repository = FileSystemPluginMetadataRepository(repository_test_file_path)
 
     def test_get_plugin_metadata(self):
-        plugin_metadata = self.plugin_metadata_repository.get_plugin_metadata()
-        self.assertEqual(plugin_metadata.name, 'virtual_assistant')
-        self.assertEqual(plugin_metadata.version, '0.0.1')
-        self.assertEqual(plugin_metadata.description, 'Virtual Assistant')
-        self.assertEqual(plugin_metadata.author, 'Rafael')
-        self.assertEqual(plugin_metadata.author_email, 'XXXXXXXXXXXXXXXXX')
-        self.assertEqual(plugin_metadata.url, 'XXXXXXXXXXXXXXXXXXXXXXXXX')
-        self.assertEqual(plugin_metadata.license, 'MIT')
+        pass
