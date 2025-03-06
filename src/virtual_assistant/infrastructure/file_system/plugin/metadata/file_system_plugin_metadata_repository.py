@@ -30,14 +30,13 @@ class FileSystemPluginMetadataRepository(PluginMetadataRepository):
                     dependencies=value.get('dependencies', []),
                     tags=value.get('tags', [])
                 )
-        print(repository_plugin_metadata)
         return repository_plugin_metadata
 
     def create_plugin_metadata(self, plugin_metadata: PluginMetadata) -> Optional[PluginMetadata]:
-        pass
+        self.__plugin_metadata[plugin_metadata.entry_point] = plugin_metadata        
 
     def get_plugin_metadata_by_entry_point(self, entry_point: str) -> Optional[PluginMetadata]:
-        pass
+        return self.__plugin_metadata.get(entry_point)
 
     def get_all_plugin_metadata(self) -> List[Dict[str, PluginMetadata]]:
         pass
