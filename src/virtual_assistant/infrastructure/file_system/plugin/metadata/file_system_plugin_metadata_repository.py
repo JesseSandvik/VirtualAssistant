@@ -39,10 +39,15 @@ class FileSystemPluginMetadataRepository(PluginMetadataRepository):
         return self.__plugin_metadata.get(entry_point)
 
     def get_all_plugin_metadata(self) -> List[Dict[str, PluginMetadata]]:
-        pass
+        return self.__plugin_metadata
 
-    def update_plugin_metadata_by_entry_point(self, entry_point: str) -> Optional[PluginMetadata]:
-        pass
+    def update_plugin_metadata_by_entry_point(self, entry_point: str, plugin_metadata: PluginMetadata) -> Optional[PluginMetadata]:
+        self.__plugin_metadata[entry_point] = plugin_metadata
+        return plugin_metadata
 
     def remove_plugin_metadata_by_entry_point(self, entry_point: str) -> bool:
-        pass
+        if entry_point in self.__plugin_metadata:
+            del self.__plugin_metadata[entry_point]
+            return True
+        return False
+

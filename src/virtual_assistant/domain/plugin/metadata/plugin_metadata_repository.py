@@ -19,7 +19,7 @@ class PluginMetadataRepository(ABC):
         pass
 
     @abstractmethod
-    def update_plugin_metadata_by_entry_point(self, entry_point: str) -> Optional[PluginMetadata]:
+    def update_plugin_metadata_by_entry_point(self, entry_point: str, plugin_metadata: PluginMetadata) -> Optional[PluginMetadata]:
         pass
     
     @abstractmethod

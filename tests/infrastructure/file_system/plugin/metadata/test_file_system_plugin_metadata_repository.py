@@ -27,8 +27,11 @@ class TestFileSystemPluginMetadataRepository(unittest.TestCase):
             author='test_author',
             required_python_version='3.13.3',
             compatible_application_versions=['1.0.0']
-
         )
         self.plugin_metadata_repository.create_plugin_metadata(new_plugin_metadata)
         plugin_metadata_from_repository = self.plugin_metadata_repository.get_plugin_metadata_by_entry_point(new_plugin_metadata.entry_point)
         self.assertEqual(new_plugin_metadata.entry_point, plugin_metadata_from_repository.entry_point)
+
+    def test_get_plugin_metadata_by_entry_point(self):
+        plugin_metadata_from_repository = self.plugin_metadata_repository.get_plugin_metadata_by_entry_point('test_file.py')
+        self.assertEqual('test_file.py', plugin_metadata_from_repository.entry_point)
